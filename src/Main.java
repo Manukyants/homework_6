@@ -2,41 +2,37 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-
-        int [] arrayMonth = new int [30];
+        int [] arrayMonth = generateRandomArray();
+    }
+    public static int[] generateRandomArray() {
+        java.util.Random random = new java.util.Random();
+        int[] arrayMonth = new int[30];
         for (int i = 0; i < arrayMonth.length; i++) {
-            arrayMonth [i] = (int) Math.round ((Math.random() * 100_000) + 100_000);
+            arrayMonth[i] = random.nextInt(100_000) + 100_000;
         }
+        System.out.println(Arrays.toString(arrayMonth));
         int sum = Arrays.stream(arrayMonth).sum();
-        System.out.println("Сумма трат за месяц составила " + sum + " рублей.");
-
+        System.out.println ("РЎСѓРјРјР° С‚СЂР°С‚ Р·Р° РјРµСЃСЏС† СЃРѕСЃС‚Р°РІРёР»Р° " + sum + " СЂСѓР±Р»РµР№.");
         int maxSummInMonth = -1;
         for (int i : arrayMonth) {
             if (i > maxSummInMonth) {
                 maxSummInMonth = i;
             }
         }
-        System.out.println("Максимальная сумма трат за день составила " + maxSummInMonth + " рублей.");
-        int minSummInMonth = 200001;
+        System.out.println("РњР°РєСЃРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР° С‚СЂР°С‚ Р·Р° РґРµРЅСЊ СЃРѕСЃС‚Р°РІРёР»Р° " + maxSummInMonth + " СЂСѓР±Р»РµР№.");
+        int minSummInMonth = sum + 1;
         for (int i : arrayMonth) {
-            if (i < minSummInMonth){
+            if (i < minSummInMonth) {
                 minSummInMonth = i;
             }
         }
-        System.out.println("Минимальная сумма трат за день составила " + minSummInMonth + " рублей.");
-        float averageSumInMonth = sum / 30f;
-        System.out.println("Средняя сумма трат за месяц составила " + averageSumInMonth + " рублей.");
-
-        char[] reverseFullName = { 'n', 'a', 'v', 'I', ' ', 'v', 'o', 'n', 'a', 'v', 'I'};
-        for (int h = reverseFullName.length - 1 ; h >= 0; h --) {
-            System.out.print(reverseFullName[h]);
-
-
-
-
+        System.out.println("РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЃСѓРјРјР° С‚СЂР°С‚ Р·Р° РґРµРЅСЊ СЃРѕСЃС‚Р°РІРёР»Р° " + minSummInMonth + " СЂСѓР±Р»6РµР№.");
+        float averageSumInMonth = sum / arrayMonth.length;
+        System.out.println("РЎСЂРµРґРЅСЏСЏ СЃСѓРјРјР° С‚СЂР°С‚ Р·Р° РјРµСЃСЏС† СЃРѕСЃС‚Р°РІРёР»Р° " + averageSumInMonth + " СЂСѓР±Р»РµР№.");
+        char[] reverseFullName = {'n', 'a', 'v', 'I', ' ', 'v', 'o', 'n', 'a', 'v', 'I'};
+        for (int i = reverseFullName.length - 1; i >= 0; i--) {
+            System.out.print(reverseFullName[i]);
         }
-
-
+        return arrayMonth;
     }
 }
